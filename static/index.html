@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>OSINT Dashboard</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/leaflet.css">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <a class="skip" href="#view">Skip to content</a>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <p class="brand-kicker">OSINT Dashboard</p>
+          <p class="brand-name">Command Center</p>
+          <p class="brand-sub">Local read-only</p>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Sections">
+        <p class="nav-label">Operations</p>
+        <a href="#/overview" data-nav="overview"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20H4z"/><path d="M9 20v-6h6v6"/></svg><span>Overview</span></a>
+        <a href="#/detroit" data-nav="detroit"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="10" r="3"/><path d="M12 21s6-5.2 6-10a6 6 0 0 0-12 0c0 4.8 6 10 6 10z"/></svg><span>Detroit 911</span></a>
+        <a href="#/shotspotter-detroit" data-nav="shotspotter-detroit"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2"/><path d="M7.2 7.2a6.8 6.8 0 0 1 9.6 0M7.2 16.8a6.8 6.8 0 0 0 9.6 0M4.6 4.6a10.4 10.4 0 0 1 14.8 0M4.6 19.4a10.4 10.4 0 0 0 14.8 0"/></svg><span>SHOTSPOTTER DETROIT</span></a>
+        <a href="#/exposure" data-nav="exposure"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.2 2.4 3.3 5.1 3.3 8S14.2 17.6 12 20c-2.2-2.4-3.3-5.1-3.3-8S9.8 6.4 12 4z"/></svg><span>Shodan Intelligence</span><span class="sr-only">Internet Exposure</span></a>
+        <a href="#/analytics" data-nav="analytics"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16"/><path d="M7 16v-4M12 16V7M17 16v-7"/></svg><span>Analytics</span></a>
+        <a href="#/reports" data-nav="reports"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span>Reports</span></a>
+        <a href="#/settings" data-nav="settings"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/></svg><span>Settings</span></a>
+        <p class="nav-label">Saved investigations</p>
+        <a href="#/search" data-nav="search"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg><span>Search</span></a>
+        <a href="#/findings" data-nav="findings"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.2 2.8 7.2 7 9 4.2-1.8 7-4.8 7-9V6z"/></svg><span>Findings</span></a>
+        <a href="#/evidence" data-nav="evidence"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2"/><rect x="5" y="7" width="14" height="13" rx="2"/></svg><span>Evidence</span></a>
+        <a href="#/learning" data-nav="learning"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0-3.5 10.9V17h7v-3.1A6 6 0 0 0 12 3z"/><path d="M9.5 20h5"/></svg><span>Learning</span></a>
+      </nav>
+      <p id="backend-status" class="sidebar-note">Checking the command center…</p>
+    </aside>
+    <main id="view" class="view" tabindex="-1"></main>
+  </div>
+  <dialog id="detail-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-bar">
+      <h2 id="dialog-title">Detail</h2>
+      <button type="button" id="dialog-close">Close</button>
+    </div>
+    <div id="dialog-body"></div>
+  </dialog>
+  <script src="/static/leaflet.js"></script>
+  <script src="/static/detroit.js"></script>
+  <script src="/static/shotspotter.js"></script>
+  <script src="/static/exposure.js"></script>
+  <script src="/static/command.js"></script>
+  <script src="/static/detect.js"></script>
+  <script src="/static/results.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
