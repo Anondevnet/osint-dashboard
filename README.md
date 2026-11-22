@@ -1,6 +1,6 @@
 # OSINT Dashboard v2
 
-A separate, read-only view of investigations already saved by the OSINT command center at `~/osint-dashboard`.
+A separate, read-only view of investigations already saved by a separate local OSINT command center.
 
 This app does not start scans, does not write to the command center database, and does not install packages. It serves a dark dashboard on port 8010 and forwards a fixed list of GET requests to the command center.
 
@@ -8,15 +8,15 @@ This app does not start scans, does not write to the command center database, an
 
 Start the existing command center first. That process is unchanged:
 
+From that command center's repository root:
+
 ```bash
-cd ~/osint-dashboard
 python3 -m uvicorn backend.api.main:app --host 127.0.0.1 --port 8000
 ```
 
-Then start this dashboard:
+Then, from this repository root, start this dashboard:
 
 ```bash
-cd ~/osint-dashboard-v2
 python3 server.py
 ```
 
@@ -63,7 +63,6 @@ Each query page asks for at most `min(maxRecordCount, 2000)` rows and stops afte
 The five-minute value is how often this dashboard checks. It is not the city's publication schedule, and the city may publish about once a day. A mapped point is a published call-for-service record, not a call that is happening now. HTTP 429 waits for a `Retry-After` delay, capped at one hour, before another check is allowed to contact the service. That wait does not run a second check at the same time.
 
 ```bash
-cd ~/osint-dashboard-v2
 python3 -m detroit.sync
 ```
 
@@ -74,7 +73,6 @@ The map uses Leaflet 1.9.4 stored in `static/leaflet.js` and `static/leaflet.css
 Street tiles need a CARTO basemap key used only by this local dashboard. The server reads it from the environment. Do not put the key in a source file or commit it. Anyone using the page can see the key in the browser's tile requests, so treat it as visible.
 
 ```bash
-cd ~/osint-dashboard-v2
 CARTO_BASEMAP_KEY="your-dedicated-key" python3 server.py
 ```
 
@@ -105,7 +103,6 @@ The server checks the layer when it starts, then every 60 seconds. `SHOTSPOTTER_
 The feed status is `DELAYED`, `HISTORICAL`, `UNAVAILABLE`, or `UNVERIFIED`. It is not `LIVE`. No ShotSpotter, DPD CAD, or Real-Time Crime Center credential was granted, and this dashboard does not call a private or authenticated interface. Washington DC, Milwaukee, and Chicago are listed on the page as discovery notes and stay disabled.
 
 ```bash
-cd ~/osint-dashboard-v2
 python3 -m shotspotter.sync
 ```
 
@@ -136,7 +133,6 @@ Open `#/exposure` after the server starts. The page looks up one public IP addre
 Save the key once in the local `.env` file. The prompt hides what you type. The script does not print the key, does not contact Shodan, and refuses to replace an existing `.env` file.
 
 ```bash
-cd ~/osint-dashboard-v2
 bash scripts/configure-shodan-key.sh
 python3 server.py
 ```
@@ -146,7 +142,6 @@ A key already exported in the shell still wins over `.env`. Create the key in yo
 ## Tests
 
 ```bash
-cd ~/osint-dashboard-v2
 python3 -m unittest discover -s tests
 ```
 
